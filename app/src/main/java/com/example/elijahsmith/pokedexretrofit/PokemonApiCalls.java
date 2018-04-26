@@ -8,8 +8,8 @@ import retrofit2.http.Path;
 
 public interface PokemonApiCalls {
 
-    @GET("{name")
-    Call<PokemonName> getPokemonName(@Path("name")String name);
+    @GET("{pokemon}")
+    Call<PokemonName> getPokemonName(@Path("pokemon")String pokemonName);
 
 
     class PokemonName {

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PokeDexRetrofit</string>
+    <string name="capture">Capture</string>
+    <string name="enter_a_pokemon_s_name">Enter A Pokemon\'s Name</string>
 </resources>
