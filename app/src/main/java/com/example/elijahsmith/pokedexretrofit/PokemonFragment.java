@@ -32,6 +32,9 @@ public class PokemonFragment extends Fragment {
     private Retrofit retrofit;
     @BindView(R.id.pokemon_image)
     protected ImageView sprite;
+    @BindView(R.id.name_edit)
+    protected TextView nameText;
+    private MainActivity mainActivity;
 
     @Nullable
     @Override
@@ -66,6 +69,7 @@ public class PokemonFragment extends Fragment {
         String pokemonName = getArguments().getString(POKEMON_NAME);
         buildRetrofit();
         makeApiCall(pokemonName);
+
     }
 
 
@@ -74,9 +78,9 @@ public class PokemonFragment extends Fragment {
             @Override
             public void onResponse(Call<PokemonApiCalls.PokemonName> call, Response<PokemonApiCalls.PokemonName> response) {
                 if (response.isSuccessful()) {
-                    summary.setText(response.body().getPokedex());
-
-                    Glide.with(getContext()).load(spriteUrl).into(sprite);
+                    summary.setText(response.body().getAbilitiesList().get(0).getAbility().getName());
+                    nameText.setText(response.body().getNamesList().get(0).getSpeciesName());
+                    Glide.with(getContext()).load(response.body().getPokemonImage().getImageUrl()).into(sprite);
 
                 } else {
                     Toast.makeText(getContext(), "Complete the field", Toast.LENGTH_LONG).show();
